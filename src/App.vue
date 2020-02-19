@@ -1,16 +1,19 @@
 <template>
   <div>
-    <compHeader/>
+    <comp-header/>
     <div>
-      content
+      <comp-featured/>
+      <comp-menu/>
     </div>
-    <compFooter/>
+    <comp-footer/>
   </div>
 </template>
 <script>
 
-import compHeader from './components/Header_Footer/Header.vue'
-import compFooter from './components/Header_Footer/Footer.vue'
+import compHeader from './components/Header_Footer/Header.vue';
+import compFooter from './components/Header_Footer/Footer.vue';
+import compFeatured from './components/Featured/index.vue';
+import compMenu from './components/Menu/index.vue';
 export default {
 
   data(){
@@ -20,7 +23,9 @@ export default {
   },
   components:{
     compHeader,
-    compFooter
+    compFooter,
+    compFeatured,
+    compMenu
   }
   
 }
