@@ -12,20 +12,24 @@
       >{{ button.name }}</md-button>
 
       <div class="product_items">
-        <md-card v-for="(product,index) in products" :key="index">
+        <md-card v-for="(product,index) in products" :key="index" v-show="product.type === activeProduct">
           <md-card-media md-ratio="16:9">
             <img :src="require(`../../assets/images/products/${product.img}`)" alt />
           </md-card-media>
 
           <md-card-header>
-            <h2 class="md-title">
+            <h2 class="md-title" style="text-align:left;">
                 {{ product.name}}
             </h2>
             
-            <div class="md-subhead">
+            <div class="md-subhead" style="text-align:left;">
               <span>${{ product.price}}</span>
             </div>
           </md-card-header>
+
+          <md-card-content>
+            {{ product.desc }}
+          </md-card-content>
         </md-card>
       </div>
     </div>
@@ -37,11 +41,12 @@ export default {
     return {
       buttons: [
         { name: "pizza", active: true },
-        { name: "burger", active: false },
+        { name: "burgers", active: false },
         { name: "salat", active: false },
-        { name: "desserts", active: false }
+        { name: "dessert", active: false }
       ],
-      products: []
+      products: [],
+      activeProduct:'pizza'
     };
   },
   methods: {
@@ -49,6 +54,7 @@ export default {
       this.buttons.forEach(item => {
         if (item.name == value) {
           item.active = true;
+          this.activeProduct = value
         } else {
           item.active = false;
         }
