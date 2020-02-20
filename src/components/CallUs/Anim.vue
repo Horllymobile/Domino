@@ -55,7 +55,7 @@ export default {
             Velocity(
                 el,
                 {opacity:1,left},
-                {delay,duration:2000,complete:done}
+                {delay,duration:500,complete:done}
              );
         }
     }

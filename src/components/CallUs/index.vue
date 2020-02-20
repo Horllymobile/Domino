@@ -7,8 +7,12 @@
                 <h1>Hungry ?</h1>
             </div>
 
-            <div class="second">
-                <comp-anim/>
+            <div class="second" v-scroll-reveal.reset="{delay:300,afterReveal:()=>{
+                    secondAnim = true
+                }}">
+                <div v-if="secondAnim">
+                    <comp-anim/>
+                </div>
             </div>
 
             <div class="third" v-scroll-reveal.reset="{delay:350,scale:2}">
@@ -24,7 +28,7 @@ import compAnim from './Anim.vue';
 export default {
     data(){
         return {
-
+            secondAnim:false,
         }
     },
     components:{
