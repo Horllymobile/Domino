@@ -1,9 +1,9 @@
 <template>
   <div class="container menu_container">
-    <div class="top">
+    <div class="top" v-scroll-reveal.reset>
       <h2>Menu</h2>
     </div>
-    <div class="buttons">
+    <div class="buttons" v-scroll-reveal.reset="{delay:250}">
       <md-button
         v-for="(button,index) in buttons"
         :key="index"
@@ -11,8 +11,8 @@
         :class="button.active ? 'md-raised' : ''"
       >{{ button.name }}</md-button>
 
-      <div class="product_items">
-        <md-card v-for="(product,index) in products" :key="index" v-show="product.type === activeProduct">
+      <div class="product_items" v-scroll-reveal.reset="{delay:1000}">
+        <md-card  v-for="(product,index) in products" :key="index" v-show="product.type === activeProduct">
           <md-card-media md-ratio="16:9">
             <img :src="require(`../../assets/images/products/${product.img}`)" alt />
           </md-card-media>
@@ -20,6 +20,7 @@
           <md-card-header>
             <h2 class="md-title" style="text-align:left;">
                 {{ product.name}}
+                
             </h2>
             
             <div class="md-subhead" style="text-align:left;">
@@ -46,7 +47,10 @@ export default {
         { name: "dessert", active: false }
       ],
       products: [],
-      activeProduct:'pizza'
+      activeProduct:'pizza',
+      loading:true,
+      isItemLoaded:false,
+
     };
   },
   methods: {
@@ -59,7 +63,7 @@ export default {
           item.active = false;
         }
       });
-    }
+    },
   },
   created() {
     this.$http
@@ -67,7 +71,6 @@ export default {
       .then(response => response.json())
       .then(data => {
         let list = [];
-
         for (let key in data) {
           list.push({
             ...data[key],

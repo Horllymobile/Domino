@@ -1,10 +1,10 @@
 <template>
     <header>
         <div class="container clear">
-            <div class="logo">
+            <div class="logo" v-scroll-reveal.reset="{delay:200}">
                 <img :src="logoIcon">
             </div>
-            <div class="nav">
+            <div class="nav" v-scroll-reveal.reset="{delay:250}">
                 <img :src="menuIcon" alt="Menu Icon" @click="showSidePanel = !showSidePanel">
             </div> 
             <md-drawer
